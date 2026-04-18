@@ -1,0 +1,29 @@
+preprocessing:
+  bandpass:
+    enabled: true
+    lowcut: 0.5
+    highcut: 40.0
+    order: 4
+  notch:
+    enabled: true
+    freq: 50.0          # 50 Hz (EU). Cambiar a 60.0 para redes americanas.
+    quality_factor: 30.0
+  baseline:
+    enabled: true
+    method: "highpass"  # "highpass" | "wavelet"
+
+normalize:
+  method: "zscore"      # "zscore" | "minmax" | "none"
+  resample_to: null     # null = sin resampling; entero = Hz objetivo
+
+rpeak:
+  method: "neurokit"
+
+hrv:
+  # Umbral dual para detección de irregularidad RR (proxy de FA):
+  # se reporta True solo si SE CUMPLEN AMBAS condiciones.
+  irregularity_threshold_cv: 0.15
+  irregularity_threshold_rmssd_ms: 100.0
+
+quality:
+  min_sqi: 0.5          # Por debajo de este SQI los features HRV son None
