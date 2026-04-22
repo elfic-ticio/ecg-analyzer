@@ -114,6 +114,26 @@ No es necesario modificar el código fuente para ajustar el filtrado:
 
 ---
 
+## Limitaciones conocidas de Fase 1
+
+El criterio de irregularidad basado en umbrales (CV ≥ 0.15 AND RMSSD > 100 ms)
+fue validado sobre 4 registros de MIT-BIH:
+
+| Registro | Condición          | Detectado como irregular |
+|----------|--------------------|--------------------------|
+| 100      | Sinusal normal     | No (correcto)            |
+| 201      | Bigeminismo        | Sí (correcto)            |
+| 217      | FA paroxística     | No (limitación conocida) |
+| 221      | FA sostenida       | Sí (correcto)            |
+
+La limitación con FA paroxística ocurre porque las métricas HRV globales
+sobre registros completos (~30 minutos) promedian segmentos de FA con
+segmentos de ritmo sinusal, atenuando la señal de irregularidad. Esta
+limitación motiva el uso de ventanas cortas (10 segundos) y clasificación
+con deep learning en Fase 2.
+
+---
+
 ## Aviso legal
 
 Este software es exclusivamente una **herramienta de investigación**.
